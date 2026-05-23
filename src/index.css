@@ -1,0 +1,1189 @@
+/* ============================================================
+   DA PORTFOLIO — DESIGN SYSTEM
+   Extracted from Figma: DA-ID-2023
+   ============================================================ */
+
+/* ============================================================
+   1. GOOGLE FONTS IMPORT
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap');
+
+
+/* ============================================================
+   2. DESIGN TOKENS — CSS CUSTOM PROPERTIES
+   ============================================================ */
+:root {
+
+  /* --- Color Palette --- */
+
+  /* Backgrounds */
+  --color-bg-primary:       #3E3E4A;   /* Main page background */
+  --color-bg-secondary:     #383842;   /* Card / panel background */
+  --color-bg-overlay:       rgba(43, 43, 52, 0.5); /* Section overlay strip */
+  --color-bg-nav:           rgba(255, 255, 255, 0.25); /* Glassmorphic nav */
+  --color-bg-tag:           #247B88;   /* Skill / category pill */
+
+  /* Text */
+  --color-text-primary:     #F6F3EC;   /* Headlines, main body on dark */
+  --color-text-body:        #F5E9D1;   /* Body copy, list items */
+  --color-text-accent:      #85C7D1;   /* Section labels, teal accent text */
+  --color-text-nav:         #3E3E4A;   /* Nav link text (over glass) */
+  --color-text-muted:       #60B6C3;   /* Footer links, subtle teal */
+
+  /* Interactive */
+  --color-cta:              #E06039;   /* Primary CTA button */
+  --color-cta-shadow:       rgba(129, 58, 36, 0.7);  /* #813A24 70% — CTA drop shadow */
+
+  /* Teal system */
+  --color-teal-light:       #85C7D1;
+  --color-teal-mid:         #60B6C3;
+  --color-teal-dark:        #247B88;
+
+  /* Image tint / placeholder */
+  --color-image-bg:         #B8E0E6;
+
+  /* Case Study — additional colors */
+  --color-hero-teal:        #A0E5F0;   /* Wide hero image band */
+  --color-step-bg:          #247B88;   /* Numbered step cards (same as tag) */
+  --color-nav-active-bg:    #31313A;   /* Active nav item background */
+  --color-text-nav-active:  #60B6C3;   /* Active/secondary nav label */
+
+  /* --- Typography --- */
+  --font-family:            'Poppins', sans-serif;
+
+  --font-weight-regular:    400;
+  --font-weight-medium:     500;
+  --font-weight-semibold:   600;
+  --font-weight-bold:       700;
+
+  /* Type Scale */
+  --text-hero:              42px;      /* Hero headline */
+  --text-section-label:     32px;      /* "People / Process / Product", section headings */
+  --text-heading-lg:        24px;      /* Card / role headings */
+  --text-heading-md:        22px;      /* Testimonial quote text */
+  --text-nav:               18px;      /* Nav links */
+  --text-cta-lg:            20px;      /* Large CTA button label */
+  --text-cta-sm:            16px;      /* Small CTA button label */
+  --text-body:              16px;      /* Standard body copy */
+  --text-tag:               12px;
+
+  /* Case Study — additional type sizes */
+  --text-page-title:        56px;      /* Case study page H1 */
+  --text-intro:             40px;      /* Case study section intro heading */
+  --text-pull-quote:        28px;      /* Large italic pull quote */
+  --text-body-lg:           18px;      /* Case study body copy (slightly larger) */
+  --text-step-number:       32px;      /* Numbered step circle */
+
+  /* Additional line heights */
+  --leading-page-title:     70px;
+  --leading-intro:          52px;
+  --leading-pull-quote:     36px;
+  --leading-body-lg:        32px;      /* Skill pills */
+
+  /* Line Heights */
+  --leading-hero:           48px;
+  --leading-tight:          1.2;
+  --leading-normal:         1.5;
+
+  /* Letter Spacing */
+  --tracking-hero:          -0.42px;
+  --tracking-heading:       -0.242px;
+
+  /* --- Spacing --- */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+
+  /* --- Border Radius --- */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-pill: 30px;
+
+  /* --- Shadows --- */
+  /* CTA drop shadow: X=0, Y=4, blur=8, spread=-2, #813A24 70% */
+  --shadow-cta:     0px 4px 8px -2px var(--color-cta-shadow);
+  --shadow-card:    0px 8px 16px 0px rgba(33, 81, 107, 0.2);
+  --shadow-teal:    0px 16px 32px 0px #72BCC8;
+  /* Work card image — low-intensity teal lift (was full-strength --shadow-teal) */
+  --shadow-card-work-image: 0px 3px 12px 0px rgba(114, 188, 200, 0.14);
+
+  /* --- Blur --- */
+  --blur-nav:   2px;
+  --blur-glow:  112.5px;
+
+  /* --- Nav --- */
+  --nav-border: rgba(255, 255, 255, 0.3);
+  --nav-height: 83px;
+
+  /* --- Work history employer logo (default row height) --- */
+  --role-header-logo-height: 36px;
+}
+
+
+/* ============================================================
+   3. RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  background:
+    radial-gradient(ellipse 700px 500px at 15% 8%, rgba(133,199,209,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 600px at 85% 15%, rgba(224,96,57,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 800px 400px at 45% 75%, rgba(36,123,136,0.17) 0%, transparent 70%),
+    #3E3E4A;
+  background-attachment: fixed;
+  color: var(--color-text-body);
+  line-height: var(--leading-normal);
+}
+
+
+/* ============================================================
+   4. TYPOGRAPHY UTILITIES
+   ============================================================ */
+
+/* Hero Headline */
+.text-hero {
+  font-size: var(--text-hero);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-hero);
+  letter-spacing: var(--tracking-hero);
+  color: var(--color-text-primary);
+}
+
+/* Section Label (teal, e.g. "People", "Process") */
+.text-section-label {
+  font-size: var(--text-section-label);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-accent);
+  line-height: normal;
+}
+
+/* Role/Card Heading */
+.text-heading {
+  font-size: var(--text-heading-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: 30px;
+}
+
+/* Testimonial / Quote Body */
+.text-quote {
+  font-size: var(--text-heading-md);
+  font-weight: var(--font-weight-medium);
+  font-style: italic;
+  letter-spacing: var(--tracking-heading);
+  color: var(--color-text-body);
+  line-height: var(--leading-normal);
+}
+
+/* Quote Attribution */
+.text-attribution {
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-accent);
+  letter-spacing: var(--tracking-heading);
+}
+
+/* Standard Body */
+.text-body {
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-body);
+  line-height: var(--leading-normal);
+}
+
+/* Nav Link */
+.text-nav {
+  font-size: var(--text-nav);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-nav);
+  line-height: normal;
+}
+
+/* Muted / Footer */
+.text-muted {
+  font-size: var(--text-nav);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+
+/* ============================================================
+   5. BUTTONS
+   ============================================================ */
+
+/* Base button reset */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  overflow: hidden;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Primary CTA — coral, large (Resume, hero). Poppins Semibold 20px. */
+.btn-primary-lg {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-cta-lg);
+  background-color: var(--color-cta);
+  color: #FFFFFF;
+  padding: var(--space-2) var(--space-5);
+  box-shadow: var(--shadow-cta);
+}
+
+/* Primary CTA — coral, standard (Case Study links; no drop shadow) */
+.btn-primary {
+  background-color: var(--color-cta);
+  color: #FFFFFF;
+  font-size: var(--text-cta-sm);
+  padding: 8px 20px;
+}
+
+
+/* ============================================================
+   6. TAGS / SKILL PILLS
+   ============================================================ */
+
+/* Teal pill used for skill/category labels */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-tag);
+  color: #FFFFFF;
+  font-family: var(--font-family);
+  font-size: var(--text-tag);
+  font-weight: var(--font-weight-regular);
+  padding: 3px 20px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   7. CARDS
+   ============================================================ */
+
+/* Dark card — testimonials, info panels */
+.card {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-8) 31px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Case Study / Work card — image + content side-by-side */
+.card-work {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Work card image panel */
+.card-work__image {
+  width: 500px;
+  height: 387px;
+  background-color: var(--color-image-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-card-work-image);
+}
+
+/* Work card content panel */
+.card-work__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Bullets in the work/case study card */
+.card-work__bullets {
+  list-style: disc;
+  padding-left: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Responsive: stack image above content on small tablet and below */
+@media (max-width: 900px) {
+  .card-work {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .card-work__image {
+    width: 100%;
+    height: 260px;
+  }
+}
+
+/* Testimonials — section title + stacked quote cards (compose .card + .testimonial) */
+.testimonials__title {
+  margin-bottom: var(--space-8);
+}
+
+.testimonials__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Quote card: icon + quote on one row; attribution below; pair with .card */
+.card.testimonial {
+  gap: var(--space-4);
+}
+
+.testimonial__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.testimonial__row .text-quote {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.testimonial__icon {
+  width: var(--space-6);
+  height: var(--space-6);
+  color: var(--color-text-accent);
+  flex-shrink: 0;
+}
+
+.testimonial .text-quote {
+  color: var(--color-text-primary);
+}
+
+
+/* ============================================================
+   8. NAVIGATION BAR
+   ============================================================ */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: max(520px, min-content); /* always contain logo + links + toggle; 520px ≈ minimum needed */
+  width: 100%;
+  box-sizing: border-box;
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  background-color: var(--color-bg-nav);
+  border: 1px solid var(--nav-border);
+  border-radius: var(--radius-md);
+  height: var(--nav-height);
+  padding: 0 32px;
+  position: relative;
+  z-index: 10;
+}
+
+.nav > * {
+  flex-shrink: 0;        /* prevent nav items from shrinking below content size */
+}
+
+/* Logo link: don't shrink in flex layout so the image keeps its aspect ratio */
+.nav > a:first-of-type {
+  flex-shrink: 0;
+  display: block;
+  line-height: 0;
+}
+
+.nav__logo {
+  height: 54px;
+  width: auto;
+  max-height: 54px;
+  object-fit: contain;
+  display: block;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  list-style: none;
+}
+
+.nav__link {
+  padding: 4px 15px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--text-nav);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-nav);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.nav__link:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+
+/* ============================================================
+   9. SECTION STRIPE (People / Process / Product)
+   ============================================================ */
+
+.section-stripe {
+  background-color: var(--color-bg-overlay);
+  padding: var(--space-12) 0;
+  width: 100%;
+}
+
+.section-stripe__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-12);
+}
+
+.section-stripe__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Icon + heading on one row (icon left of label) */
+.section-stripe__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.section-stripe__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.section-stripe__icon svg {
+  width: 100%;
+  height: 100%;
+  color: var(--color-text-accent);
+}
+
+/* .section-stripe uses .text-section-label and .text-body directly */
+
+
+/* ============================================================
+   10. LAYOUT UTILITIES
+   ============================================================ */
+
+/* Max-width content container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 196px; /* matches Figma left margin */
+}
+
+/* At small tablet and below, reduce horizontal padding so nav and content have room */
+@media (max-width: 1024px) {
+  .container {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}
+
+/* Section vertical spacing */
+.section {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+/* Flex row with gap */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Flex column with gap */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Tag/pill row wrap */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+
+/* ============================================================
+   11. DECORATIVE / EFFECTS
+   ============================================================ */
+
+/* Teal glow gradient blob (nav gradient effect) */
+.glow-blob {
+  position: absolute;
+  width: 1000px;
+  height: 228px;
+  filter: blur(var(--blur-glow));
+  pointer-events: none;
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Wave decorative bottom-of-card overlay */
+.wave-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+
+/* ============================================================
+   12. DIVIDERS
+   ============================================================ */
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: var(--space-8) 0;
+}
+
+
+/* ============================================================
+   13. FOOTER
+   ============================================================ */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6) var(--space-6);
+}
+
+.footer__logo {
+  height: 48px;
+  width: auto;
+}
+
+.footer__contact {
+  font-size: var(--text-nav);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  text-align: right;
+  white-space: pre-wrap;
+}
+
+
+/* ============================================================
+   14. EXPERIENCE ROLE BLOCK
+   ============================================================ */
+
+/* Experience role row — logo + one line (title semibold, duration regular) */
+.role-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.role-header__logo {
+  height: var(--role-header-logo-height);
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* Taller mark (e.g. square-ish SVG) — 150% of default logo height */
+.role-header__logo--lg {
+  height: calc(var(--role-header-logo-height) * 1.5);
+}
+
+.role-header__logo--placeholder {
+  width: 36px;
+  height: 36px;
+  background-color: var(--color-image-bg);
+  border-radius: var(--radius-md);
+}
+
+/* One line; ellipsis when narrow */
+.role-header__line {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-family);
+  font-size: var(--text-nav);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-heading);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.role-header__line-title {
+  font-weight: var(--font-weight-semibold);
+}
+
+.role-header__line-duration {
+  font-weight: var(--font-weight-regular);
+}
+
+/* Role description */
+.role-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  margin-bottom: calc(var(--space-4) + var(--space-6) + var(--space-6)); /* 16px + 24px + 24px before tags */
+}
+
+.role-body__description {
+  font-size: var(--text-body);
+  color: var(--color-text-body);
+  line-height: var(--leading-normal);
+}
+
+.role-body__list {
+  list-style: disc;
+  padding-left: var(--space-5);
+  font-size: var(--text-body);
+  color: var(--color-text-body);
+  line-height: var(--leading-tight);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.role-body__list strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+
+/* ============================================================
+   15. CASE STUDY — PAGE HEADER / HERO BAND
+   ============================================================ */
+
+/*
+  Full-width teal image band at top of case study.
+  Sits below the nav, contains a screenshot masked to a
+  rounded rectangle with wave overlay effects.
+*/
+.hero-band {
+  width: 100%;
+  background-color: var(--color-hero-teal);  /* #A0E5F0 */
+  position: relative;
+  overflow: hidden;
+  /* height varies by content — set per page, e.g. 451px or 616px */
+}
+
+.hero-band__image {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  box-shadow: 0px 8px 16px 0px rgba(104, 178, 189, 0.4);
+}
+
+
+/* ============================================================
+   16. CASE STUDY — PAGE TITLE BLOCK
+   ============================================================ */
+
+/*
+  Dark overlay stripe containing the case study H1, pull quote,
+  outcome stats, and skill tags. Sits directly over the hero band.
+*/
+.cs-header {
+  background-color: var(--color-bg-overlay);  /* rgba(43,43,52,0.5) */
+  padding: var(--space-8) 0;
+  width: 100%;
+}
+
+/* H1 — e.g. "B2B E-commerce at B&H Photo" */
+.cs-title {
+  font-size: var(--text-page-title);   /* 56px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-page-title); /* 70px */
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+}
+
+/* Large italic pull quote beneath H1 */
+.cs-pull-quote {
+  font-size: var(--text-pull-quote);   /* 28px */
+  font-weight: var(--font-weight-regular);
+  font-style: italic;
+  line-height: var(--leading-pull-quote); /* 36px */
+  color: var(--color-text-accent);     /* #85C7D1 */
+  font-family: var(--font-family);
+  max-width: 666px;
+}
+
+/* Outcome stat list beside pull quote */
+.cs-outcomes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-size: var(--text-body-lg);      /* 18px */
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-body-lg); /* 32px */
+  color: var(--color-text-body);
+  font-family: var(--font-family);
+}
+
+/* Metric number highlight within outcome list */
+.cs-outcomes__number {
+  color: var(--color-text-primary);    /* #F6F3EC */
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Outcome icon row (arrow up/down, star) */
+.cs-outcomes__icons {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-right: var(--space-2);
+}
+
+
+/* ============================================================
+   17. CASE STUDY — SECTION HEADING (teal, semibold)
+   ============================================================ */
+
+/*
+  In-page section labels like "Getting Up to Speed Quickly"
+  or "Improving Quality". Smaller than homepage section labels.
+*/
+.cs-section-heading {
+  font-size: var(--text-heading-lg);   /* 24px */
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-accent);     /* #85C7D1 */
+  line-height: 56px;
+  font-family: var(--font-family);
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   18. CASE STUDY — INTRO / SECTION HEADING (white, large)
+   ============================================================ */
+
+/*
+  Used for major section breaks, e.g. "From a Landing Page
+  to a Complete Platform". Lighter weight than homepage hero.
+*/
+.cs-intro-heading {
+  font-size: var(--text-intro);        /* 40px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-intro);   /* 52px */
+  color: var(--color-text-primary);    /* #F6F3EC / white */
+  font-family: var(--font-family);
+}
+
+
+/* ============================================================
+   19. CASE STUDY — BODY COPY (large, 18px)
+   ============================================================ */
+
+/*
+  Case study narrative paragraphs and ordered lists.
+  Slightly larger than homepage body for reading comfort.
+*/
+.cs-body {
+  font-size: var(--text-body-lg);      /* 18px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-body-lg); /* 32px */
+  color: var(--color-text-body);       /* #F5E9D1 */
+  font-family: var(--font-family);
+  max-width: 1000px;
+}
+
+.cs-body p + p,
+.cs-body p + ol,
+.cs-body ol + p {
+  margin-top: var(--space-6);          /* 24px paragraph gap */
+}
+
+.cs-body ol {
+  padding-left: 27px;
+}
+
+.cs-body li {
+  margin-bottom: 0;
+}
+
+/* Italic caption / annotation below images */
+.cs-caption {
+  font-size: var(--text-body);         /* 16px */
+  font-style: italic;
+  line-height: 32px;
+  color: var(--color-text-primary);    /* #F6F3EC */
+  text-align: center;
+  font-family: var(--font-family);
+}
+
+
+/* ============================================================
+   20. CASE STUDY — SECONDARY NAV (work tabs)
+   ============================================================ */
+
+/*
+  Horizontal tab row at the top of case study pages for
+  switching between companies: StreetEasy / B&H / Ally / About.
+  Uses the main nav bar as a wrapper (see .nav).
+*/
+.nav__tab {
+  padding: 4px 15px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--text-nav);          /* 18px */
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-nav-active); /* #60B6C3 */
+  text-decoration: none;
+  background: transparent;
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.nav__tab:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Active/selected tab */
+.nav__tab--active {
+  background-color: var(--color-nav-active-bg); /* #31313A */
+  color: var(--color-text-nav-active);
+}
+
+
+/* ============================================================
+   21. NUMBERED STEP CARDS (3-column process breakdown)
+   ============================================================ */
+
+/*
+  Three-column layout used to break down a multi-part approach.
+  Each column has: a circled number badge on top, a teal card
+  with heading + bullet list.
+*/
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 304px);
+  gap: var(--space-8);                 /* 32px gap */
+  align-items: start;
+  position: relative;
+}
+
+/* The teal card body */
+.step-card {
+  background-color: var(--color-step-bg); /* #247B88 */
+  border-radius: var(--radius-md);     /* 8px */
+  height: 243px;
+  padding: var(--space-12) var(--space-4) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Circled number badge — sits above card, overlapping top edge */
+.step-card__badge-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -37px;                /* Pull card up under badge */
+  z-index: 1;
+}
+
+.step-card__badge {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: var(--color-bg-secondary); /* #383842 circle bg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* The circle image is used in Figma; replicate with CSS or swap in SVG */
+}
+
+.step-card__number {
+  font-size: var(--text-step-number);  /* 32px */
+  font-weight: var(--font-weight-bold);
+  color: var(--color-cta);             /* #E06039 */
+  font-family: var(--font-family);
+  text-align: center;
+}
+
+/* Card heading */
+.step-card__title {
+  font-size: var(--text-heading-lg);   /* 24px */
+  font-weight: var(--font-weight-bold);
+  color: #FFFFFF;
+  line-height: 34px;
+  text-align: center;
+  font-family: var(--font-family);
+}
+
+/* Card bullet list */
+.step-card__list {
+  list-style: disc;
+  padding-left: var(--space-6);
+  font-size: var(--text-body);         /* 16px */
+  font-weight: var(--font-weight-medium);
+  color: #FFFFFF;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+/* ============================================================
+   22. PROCESS IMAGE BLOCK (wide screenshot with teal bg)
+   ============================================================ */
+
+/*
+  Used for process diagram / XD screenshot sections.
+  A teal-tinted rounded rectangle containing a masked
+  screenshot image with wave overlay effects.
+*/
+.process-image {
+  position: relative;
+  width: 1000px;
+  background-color: var(--color-image-bg); /* #B8E0E6 */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.process-image__screenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: var(--shadow-card);
+}
+
+
+/* ============================================================
+   23. LIGHT MODE — TOKEN OVERRIDES
+   ============================================================
+
+   Apply via:
+     <html data-theme="light">  or  <body data-theme="light">
+     or  .light-mode { ... }
+
+   Strategy:
+   - Base bg flips to #F6F3EC (the dark mode's "text primary" — 
+     they share the same warm off-white, making it a natural pair)
+   - Card/panel bg uses #F5E9D1 (warm tan, dark mode's body text)
+   - All text roles invert to the dark charcoal palette
+   - Full teal system (#85C7D1 → #247B88) is reused unchanged —
+     it reads well on both light and dark backgrounds
+   - Coral CTA (#E06039) is reused unchanged
+   - Nav glass flips to a dark-tinted glass to stay legible
+   - Overlays and active states adjust for sufficient contrast
+   ============================================================ */
+
+[data-theme="light"],
+.light-mode {
+
+  /* --- Backgrounds --- */
+  --color-bg-primary:       #F6F3EC;            /* Warm off-white page bg (was dark mode's text-primary) */
+  --color-bg-secondary:     #F5E9D1;            /* Warm tan card bg (was dark mode's text-body) */
+  --color-bg-overlay:       rgba(230, 225, 210, 0.6); /* Light warm overlay strip */
+  --color-bg-nav:           rgba(62, 62, 74, 0.12);   /* Subtle dark-tinted glass nav */
+  --color-bg-tag:           #247B88;            /* ✓ Reused — teal dark, white text, still works */
+
+  /* --- Text --- */
+  --color-text-primary:     #3E3E4A;            /* Dark charcoal headlines (was dark mode's page bg) */
+  --color-text-body:        #4A4A58;            /* Slightly softened charcoal for body readability */
+  --color-text-accent:      #247B88;            /* Teal dark for section labels — more contrast on light */
+  --color-text-nav:         #3E3E4A;            /* ✓ Reused — nav text was already this color */
+  --color-text-muted:       #60B6C3;            /* ✓ Reused — teal mid, softer on light bg */
+
+  /* --- Interactive --- */
+  --color-cta:              #E06039;            /* ✓ Reused — coral CTA, unchanged */
+  --color-cta-shadow:       rgba(129, 58, 36, 0.4); /* Lightened shadow for light bg */
+
+  /* --- Teal system --- */
+  --color-teal-light:       #85C7D1;            /* ✓ Reused */
+  --color-teal-mid:         #60B6C3;            /* ✓ Reused */
+  --color-teal-dark:        #247B88;            /* ✓ Reused */
+
+  /* --- Image bg --- */
+  --color-image-bg:         #B8E0E6;            /* ✓ Reused — teal tint still works as image panel bg */
+
+  /* --- Case Study additions --- */
+  --color-hero-teal:        #A0E5F0;            /* ✓ Reused — wide hero teal band */
+  --color-step-bg:          #247B88;            /* ✓ Reused — teal dark step cards */
+  --color-nav-active-bg:    #3E3E4A;            /* Dark charcoal pill for active tab on light nav */
+  --color-text-nav-active:  #F6F3EC;            /* Off-white label on dark active pill */
+
+  /* --- Nav --- */
+  --nav-border:             rgba(62, 62, 74, 0.15); /* Subtle dark border on light glass */
+
+  /* --- Shadows --- */
+  --shadow-card:            0px 8px 16px 0px rgba(62, 62, 74, 0.12); /* Warm dark shadow on light bg */
+  --shadow-teal:            0px 16px 32px 0px rgba(114, 188, 200, 0.4); /* Softened teal glow */
+  --shadow-card-work-image: 0px 2px 10px 0px rgba(114, 188, 200, 0.1);
+}
+
+
+/* ============================================================
+   24. LIGHT MODE — COMPONENT OVERRIDES
+   ============================================================
+   A small number of components use hardcoded colors that
+   don't inherit from tokens. These overrides ensure they
+   respect the light theme too.
+   ============================================================ */
+
+/* Work history logos are white SVGs for dark mode; invert to black on light bg */
+[data-theme="light"] .role-header img.role-header__logo,
+.light-mode .role-header img.role-header__logo {
+  filter: brightness(0);
+}
+
+/* Testimonial card — was #383842, now use warm tan */
+[data-theme="light"] .card,
+.light-mode .card {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid rgba(62, 62, 74, 0.08);
+}
+
+/* Attribution text (e.g. "— Product Manager") — #85C7D1 lacks contrast
+   on the warm tan card bg (#F5E9D1), step down to teal-dark (#247B88) */
+[data-theme="light"] .text-attribution,
+.light-mode .text-attribution {
+  color: var(--color-teal-dark);  /* #247B88, ~4.6:1 on #F5E9D1 */
+}
+
+/* Quote text — was warm cream on dark, now dark charcoal on tan */
+[data-theme="light"] .text-quote,
+.light-mode .text-quote {
+  color: var(--color-text-primary);
+}
+
+/* Quote icon on tan cards — match attribution contrast */
+[data-theme="light"] .testimonial__icon,
+.light-mode .testimonial__icon {
+  color: var(--color-teal-dark);
+}
+
+/* Homepage People / Process / Product stripe — dark teal bg, pure white text/icons */
+[data-theme="light"] .section-stripe,
+.light-mode .section-stripe {
+  background-color: var(--color-teal-dark);
+}
+
+[data-theme="light"] .section-stripe .text-section-label,
+.light-mode .section-stripe .text-section-label,
+[data-theme="light"] .section-stripe .text-body,
+.light-mode .section-stripe .text-body,
+[data-theme="light"] .section-stripe .section-stripe__lead,
+.light-mode .section-stripe .section-stripe__lead {
+  color: #FFFFFF;
+}
+
+[data-theme="light"] .section-stripe__icon svg,
+.light-mode .section-stripe__icon svg {
+  color: #FFFFFF;
+}
+
+/* Step card badge circle — was dark #383842, now off-white */
+[data-theme="light"] .step-card__badge,
+.light-mode .step-card__badge {
+  background-color: var(--color-bg-primary);
+  border: 2px solid rgba(62, 62, 74, 0.12);
+}
+
+/* Step card title + list text — hardcoded #FFFFFF in dark mode, keep white (on teal bg) */
+/* No change needed — step cards remain teal bg with white text in both modes */
+
+/* Case study header overlay */
+[data-theme="light"] .cs-header,
+.light-mode .cs-header {
+  background-color: var(--color-bg-overlay);
+}
+
+/* Active nav tab — was dark pill, now dark charcoal on light glass */
+[data-theme="light"] .nav__tab--active,
+.light-mode .nav__tab--active {
+  background-color: var(--color-nav-active-bg);
+  color: var(--color-text-nav-active);
+}
+
+/* Divider — was white/10, now dark/10 */
+[data-theme="light"] .divider,
+.light-mode .divider {
+  background-color: rgba(62, 62, 74, 0.1);
+}
+
+/* Body base */
+[data-theme="light"] body,
+.light-mode body {
+  background:
+    radial-gradient(ellipse 700px 500px at 15% 8%, rgba(133,199,209,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 600px at 85% 15%, rgba(224,96,57,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 800px 400px at 45% 75%, rgba(36,123,136,0.17) 0%, transparent 70%),
+    #F6F3EC;
+  background-attachment: fixed;
+  color: var(--color-text-body);
+}

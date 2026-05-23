@@ -1,0 +1,23 @@
+{
+  "name": "@da-id/design-system",
+  "version": "0.1.0",
+  "description": "DA Portfolio design system — CSS tokens, typography, and component primitives (Poppins, dark/light via data-theme)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielallegrucci/da-design-system.git"
+  },
+  "files": [
+    "src",
+    "cursorrules.md",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./src/index.css",
+    "./css": "./src/index.css",
+    "./theme": "./src/theme-init.js"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ]
+}
