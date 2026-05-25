@@ -865,8 +865,9 @@ body {
 }
 
 .hero-band--case-study {
-  min-height: 451px;
-  height: clamp(280px, 42vw, 616px);
+  min-height: 280px;
+  height: clamp(280px, 45vw, 632px);
+  max-height: 632px;
 }
 
 .hero-band__image {
@@ -891,8 +892,15 @@ body {
 */
 .cs-header {
   background-color: var(--color-bg-overlay);  /* rgba(43,43,52,0.5) */
-  padding: var(--space-8) 0;
+  padding: var(--space-10) 0 var(--space-8);
   width: 100%;
+}
+
+/* Align header + body copy to the same 1000px column as Framer */
+.cs-page-inner {
+  max-width: var(--about-content-max);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* H1 — e.g. "B2B E-commerce at B&H Photo" */
@@ -954,9 +962,18 @@ body {
   font-size: var(--text-heading-lg);   /* 24px */
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-accent);     /* #85C7D1 */
-  line-height: 56px;
+  line-height: 1.35;
   font-family: var(--font-family);
-  white-space: nowrap;
+}
+
+/* Major in-page chapters (e.g. "Closing Foundational Gaps") */
+.cs-chapter-heading {
+  font-size: var(--text-intro);        /* 40px */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-intro);   /* 52px */
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  margin: 0 0 var(--space-6);
 }
 
 
@@ -1031,30 +1048,38 @@ body {
   color: var(--color-text-primary);
 }
 
-.cs-header__meta {
+/* Pull quote left, outcomes right (Framer header row) */
+.cs-header__summary-row {
   margin-top: var(--space-6);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 280px);
+  gap: var(--space-10);
+  align-items: start;
+}
+
+.cs-header__skills {
+  margin-top: var(--space-8);
 }
 
 .cs-main {
-  padding-top: var(--space-12);
+  padding-top: var(--space-10);
   padding-bottom: var(--space-20);
 }
 
 .cs-section {
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-16);
 }
 
 .cs-section__body {
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
 }
 
 .cs-subsection {
-  margin-top: var(--space-10);
+  margin-top: var(--space-12);
+}
+
+.cs-subsection:first-child {
+  margin-top: var(--space-8);
 }
 
 .cs-subsection__title {
@@ -1073,7 +1098,11 @@ body {
 }
 
 .cs-prose-block {
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-12);
+}
+
+.cs-prose-block + .steps-grid--responsive {
+  margin-top: var(--space-4);
 }
 
 .cs-prose-block p + p {
@@ -1109,6 +1138,38 @@ body {
   line-height: 0;
 }
 
+.cs-figure--medium {
+  max-width: 460px;
+}
+
+.cs-figure--narrow {
+  max-width: 320px;
+}
+
+.cs-figure-block--medium,
+.cs-figure-block--narrow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cs-figure-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8);
+  margin: var(--space-10) 0;
+  align-items: start;
+}
+
+.cs-figure-row__item {
+  margin: 0;
+  min-width: 0;
+}
+
+.cs-figure-row .cs-figure {
+  max-width: none;
+}
+
 .cs-figure__img {
   display: block;
   width: 100%;
@@ -1120,7 +1181,12 @@ body {
 }
 
 .steps-grid--responsive {
-  margin: var(--space-10) 0 var(--space-12);
+  margin: var(--space-8) 0 var(--space-16);
+  max-width: var(--about-content-max);
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-8);
 }
 
 .step-card-wrap {
@@ -1130,16 +1196,25 @@ body {
 }
 
 @media (max-width: 1024px) {
+  .cs-header__summary-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
   .steps-grid,
   .steps-grid--responsive {
     grid-template-columns: 1fr;
     max-width: 360px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .cs-two-col {
+  .cs-two-col,
+  .cs-figure-row {
     grid-template-columns: 1fr;
+  }
+
+  .cs-figure--medium,
+  .cs-figure--narrow {
+    max-width: 100%;
   }
 }
 
@@ -1360,7 +1435,8 @@ body {
 .step-card {
   background-color: var(--color-step-bg); /* #247B88 */
   border-radius: var(--radius-md);     /* 8px */
-  height: 243px;
+  min-height: 243px;
+  height: auto;
   padding: var(--space-12) var(--space-4) var(--space-4);
   display: flex;
   flex-direction: column;
@@ -1399,8 +1475,8 @@ body {
 .step-card__title {
   font-size: var(--text-heading-lg);   /* 24px */
   font-weight: var(--font-weight-bold);
-  color: #FFFFFF;
-  line-height: 34px;
+  color: var(--color-text-primary);
+  line-height: 1.35;
   text-align: center;
   font-family: var(--font-family);
 }
