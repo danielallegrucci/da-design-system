@@ -29,7 +29,7 @@ In `package.json`:
 Pin a tag or commit for stability:
 
 ```json
-"@da-id/design-system": "github:danielallegrucci/da-design-system#v0.1.0"
+"@da-id/design-system": "github:danielallegrucci/da-design-system#v0.1.1"
 ```
 
 ### Local path (monorepo / before publishing)
