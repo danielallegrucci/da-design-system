@@ -473,6 +473,68 @@ body {
   background-color: rgba(0, 0, 0, 0.08);
 }
 
+/* Work flyout menu */
+.nav__item--flyout {
+  position: relative;
+  list-style: none;
+}
+
+.nav__link--trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.nav__chevron {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid currentColor;
+  opacity: 0.85;
+}
+
+.nav__flyout {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  z-index: 60;
+  min-width: 300px;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-secondary);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.nav__flyout-link {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--text-nav);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  line-height: var(--leading-normal);
+}
+
+.nav__flyout-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav__flyout-link[aria-current="page"] {
+  background-color: var(--color-nav-active-bg);
+  color: var(--color-text-nav-active);
+}
+
 
 /* ============================================================
    9. SECTION STRIPE (People / Process / Product)
@@ -548,6 +610,19 @@ body {
 .section {
   padding-top: var(--space-16);
   padding-bottom: var(--space-16);
+}
+
+/* Visually hidden, available to assistive tech */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Flex row with gap */
@@ -760,11 +835,20 @@ body {
   /* height varies by content — set per page, e.g. 451px or 616px */
 }
 
+.hero-band--case-study {
+  min-height: 451px;
+  height: clamp(280px, 42vw, 616px);
+}
+
 .hero-band__image {
   position: absolute;
   inset: 0;
   object-fit: cover;
   box-shadow: 0px 8px 16px 0px rgba(104, 178, 189, 0.4);
+}
+
+.hero-band__image--placeholder {
+  background-color: var(--color-image-bg);
 }
 
 
@@ -903,6 +987,131 @@ body {
   color: var(--color-text-primary);    /* #F6F3EC */
   text-align: center;
   font-family: var(--font-family);
+}
+
+/* Case study long-form layout helpers */
+.cs-back-link {
+  display: inline-block;
+  margin-bottom: var(--space-4);
+  font-size: var(--text-body);
+  color: var(--color-text-body);
+  text-decoration: none;
+}
+
+.cs-back-link:hover {
+  color: var(--color-text-primary);
+}
+
+.cs-header__meta {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.cs-main {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-20);
+}
+
+.cs-section {
+  margin-bottom: var(--space-12);
+}
+
+.cs-section__body {
+  margin-top: var(--space-4);
+}
+
+.cs-subsection {
+  margin-top: var(--space-10);
+}
+
+.cs-subsection__title {
+  margin: 0 0 var(--space-4);
+}
+
+.cs-subsection__body p + p,
+.cs-subsection__body ul + p,
+.cs-subsection__body p + ul {
+  margin-top: var(--space-6);
+}
+
+.cs-subsection__body ul {
+  padding-left: var(--space-6);
+  list-style: disc;
+}
+
+.cs-prose-block {
+  margin-bottom: var(--space-10);
+}
+
+.cs-prose-block p + p {
+  margin-top: var(--space-6);
+}
+
+.cs-prose-block--closing {
+  margin-top: var(--space-12);
+}
+
+.cs-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+  margin: var(--space-8) 0;
+}
+
+.cs-two-col__text p + p {
+  margin-top: var(--space-4);
+}
+
+.cs-figure-block {
+  margin: var(--space-10) 0;
+}
+
+.cs-figure {
+  width: 100%;
+  max-width: var(--about-content-max);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--color-image-bg);
+  line-height: 0;
+}
+
+.cs-figure__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cs-callout {
+  margin: var(--space-8) 0;
+}
+
+.steps-grid--responsive {
+  margin: var(--space-10) 0 var(--space-12);
+}
+
+.step-card-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .steps-grid,
+  .steps-grid--responsive {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cs-two-col {
+    grid-template-columns: 1fr;
+  }
 }
 
 
@@ -1192,10 +1401,12 @@ body {
 */
 .process-image {
   position: relative;
-  width: 1000px;
+  width: 100%;
+  max-width: var(--about-content-max);
   background-color: var(--color-image-bg); /* #B8E0E6 */
   border-radius: var(--radius-md);
   overflow: hidden;
+  min-height: 200px;
 }
 
 .process-image__screenshot {
