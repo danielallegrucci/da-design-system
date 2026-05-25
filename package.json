@@ -7,8 +7,12 @@
     "type": "git",
     "url": "https://github.com/danielallegrucci/da-design-system.git"
   },
+  "scripts": {
+    "preview": "npx --yes serve preview -l 3456"
+  },
   "files": [
     "src",
+    "preview",
     "cursorrules.md",
     "README.md"
   ],

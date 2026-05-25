@@ -106,6 +106,23 @@ gh repo create da-design-system --public --source=. --push
 
 Then in apps, switch `file:` dependency to `github:danielallegrucci/da-design-system#main`.
 
+## Preview catalog
+
+A static component catalog lives in **`preview/`** (HTML + `preview.css` layout only).
+
+```bash
+npm run preview
+```
+
+Open [http://localhost:3456](http://localhost:3456). Toggle light/dark on the page to verify `[data-theme="light"]` overrides.
+
+**Where this should live:** in the **design-system repo** (`da-design-system/preview/`), not in consumer apps. Apps like the portfolio import the package; they do not own the catalog.
+
+Optional hosting:
+
+- **GitHub Pages** — deploy the `preview/` folder (e.g. site root or `/preview` path on `gh-pages`).
+- **Portfolio mirror** — a `/design-system` route in Next.js is optional for checking the *installed* version on da-id.com; keep the source of truth in this repo.
+
 ## What stays in app repos
 
 - Page-specific React components (`Navbar`, `WorkHistory`, etc.)

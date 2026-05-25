@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@da-id/design-system — Preview</title>
+    <link rel="stylesheet" href="../src/index.css" />
+    <link rel="stylesheet" href="./preview.css" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var useLight = stored === "light" || (!stored && !prefersDark);
+          if (useLight) document.documentElement.setAttribute("data-theme", "light");
+          else document.documentElement.removeAttribute("data-theme");
+        } catch (e) {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      })();
+    </script>
+  </head>
+  <body class="dsp-body">
+    <div class="dsp-shell">
+      <header class="dsp-top">
+        <div class="dsp-top__meta">
+          <p class="text-section-label" style="margin: 0">@da-id/design-system</p>
+          <p class="text-muted dsp-version">Component &amp; token catalog · v0.1.8</p>
+        </div>
+        <div class="dsp-actions">
+          <button type="button" class="btn btn-primary" id="theme-toggle">Toggle light / dark</button>
+          <a class="btn btn-primary-lg" href="https://github.com/danielallegrucci/da-design-system">GitHub repo</a>
+        </div>
+      </header>
+
+      <!-- Tokens -->
+      <section class="dsp-section" id="tokens">
+        <h2 class="dsp-section__title">Color tokens</h2>
+        <p class="dsp-section__desc">Semantic variables on <code>:root</code> and <code>[data-theme="light"]</code>.</p>
+        <div class="dsp-grid-2">
+          <div class="dsp-swatch">
+            <div class="dsp-swatch__chip" style="background-color: var(--color-bg-primary)"></div>
+            <span class="dsp-swatch__label">--color-bg-primary</span>
+          </div>
+          <div class="dsp-swatch">
+            <div class="dsp-swatch__chip" style="background-color: var(--color-bg-secondary)"></div>
+            <span class="dsp-swatch__label">--color-bg-secondary</span>
+          </div>
+          <div class="dsp-swatch">
+            <div class="dsp-swatch__chip" style="background-color: var(--color-cta)"></div>
+            <span class="dsp-swatch__label">--color-cta</span>
+          </div>
+          <div class="dsp-swatch">
+            <div class="dsp-swatch__chip" style="background-color: var(--color-text-accent)"></div>
+            <span class="dsp-swatch__label">--color-text-accent</span>
+          </div>
+          <div class="dsp-swatch">
+            <div class="dsp-swatch__chip" style="background-color: var(--color-teal-dark)"></div>
+            <span class="dsp-swatch__label">--color-teal-dark</span>
+          </div>
+          <div class="dsp-swatch">
+            <div class="dsp-swatch__chip" style="background-color: var(--color-bg-tag)"></div>
+            <span class="dsp-swatch__label">--color-bg-tag</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section class="dsp-section" id="typography">
+        <h2 class="dsp-section__title">Typography</h2>
+        <p class="dsp-section__desc">Utility classes for type scale and roles.</p>
+        <div class="dsp-panel dsp-stack">
+          <p class="text-hero">.text-hero — Strategic design leader</p>
+          <p class="text-section-label">.text-section-label — People · Process · Product</p>
+          <p class="text-heading">.text-heading — Card or role heading</p>
+          <p class="text-quote">.text-quote — Testimonial quote line</p>
+          <p class="text-attribution">.text-attribution — Name, title</p>
+          <p class="text-body">.text-body — Standard body copy for long-form sections.</p>
+          <p class="text-muted">.text-muted — Footer and secondary links</p>
+        </div>
+      </section>
+
+      <!-- Buttons & tags -->
+      <section class="dsp-section" id="buttons">
+        <h2 class="dsp-section__title">Buttons &amp; tags</h2>
+        <div class="dsp-panel">
+          <div class="dsp-row">
+            <button type="button" class="btn btn-primary-lg">.btn-primary-lg</button>
+            <button type="button" class="btn btn-primary">.btn-primary</button>
+            <button type="button" class="btn">.btn</button>
+          </div>
+          <div class="tag-row" style="margin-top: var(--space-6)">
+            <span class="tag">.tag</span>
+            <span class="tag">Product Design</span>
+            <span class="tag">UX Research</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cards -->
+      <section class="dsp-section" id="cards">
+        <h2 class="dsp-section__title">Cards</h2>
+        <div class="dsp-stack">
+          <div class="card" style="max-width: 480px">
+            <p class="text-body" style="margin: 0">.card — callout or content panel with shadow.</p>
+          </div>
+          <article class="card-work" style="max-width: 560px">
+            <div class="card-work__image dsp-placeholder" aria-hidden>Image</div>
+            <div class="card-work__content">
+              <h3 class="text-heading" style="margin: 0 0 var(--space-2)">.card-work</h3>
+              <p class="text-body" style="margin: 0">Work history card shell with image band.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Section stripe -->
+      <section class="dsp-section" id="section-stripe">
+        <h2 class="dsp-section__title">Section stripe</h2>
+        <div class="section-stripe">
+          <div class="dsp-demo-container">
+            <div class="section-stripe__grid">
+              <div class="section-stripe__item">
+                <div class="section-stripe__header">
+                  <span class="section-stripe__icon" aria-hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 2v20M2 12h20" />
+                    </svg>
+                  </span>
+                  <span class="text-section-label">People</span>
+                </div>
+                <p class="text-body">Build teams and culture that ship.</p>
+              </div>
+              <div class="section-stripe__item">
+                <div class="section-stripe__header">
+                  <span class="section-stripe__icon" aria-hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                  </span>
+                  <span class="text-section-label">Process</span>
+                </div>
+                <p class="text-body">Align discovery through delivery.</p>
+              </div>
+              <div class="section-stripe__item">
+                <div class="section-stripe__header">
+                  <span class="section-stripe__icon" aria-hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="18" height="18" rx="2" />
+                    </svg>
+                  </span>
+                  <span class="text-section-label">Product</span>
+                </div>
+                <p class="text-body">Design systems and polished UX.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nav -->
+      <section class="dsp-section" id="nav">
+        <h2 class="dsp-section__title">Navigation</h2>
+        <div class="dsp-nav-demo">
+          <header class="nav-header">
+            <div class="container nav-header__container">
+              <nav class="nav" aria-label="Preview">
+                <a href="#" class="nav__logo-link" aria-label="Home">
+                  <span class="text-body" style="color: var(--color-text-nav)">Logo</span>
+                </a>
+                <div class="nav__links">
+                  <a class="nav__link" href="#">Work</a>
+                  <a class="nav__link" href="#">About</a>
+                  <span class="nav__tab nav__tab--active">Case study</span>
+                </div>
+              </nav>
+            </div>
+          </header>
+        </div>
+        <p class="dsp-class">.nav-header · .nav · .nav__link · .nav__tab--active</p>
+      </section>
+
+      <!-- Case study header -->
+      <section class="dsp-section" id="case-study">
+        <h2 class="dsp-section__title">Case study header</h2>
+        <div class="cs-header dsp-panel--overlay dsp-panel">
+          <div class="dsp-demo-container cs-page-inner">
+            <h1 class="cs-title" style="font-size: var(--text-heading-lg); line-height: 1.2">Case study title</h1>
+            <div class="cs-header__summary-row">
+              <p class="cs-pull-quote" style="font-size: var(--text-heading-md); line-height: 1.4">
+                Pull quote beside outcomes — .cs-pull-quote + .cs-header__summary-row
+              </p>
+              <ul class="cs-outcomes" aria-label="Outcomes preview">
+                <li class="cs-outcomes__item">
+                  <svg class="cs-outcomes__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden>
+                    <path d="M12 19V5M5 12l7-7 7 7" />
+                  </svg>
+                  <span class="cs-outcomes__text">Increased conversions</span>
+                </li>
+                <li class="cs-outcomes__item">
+                  <svg class="cs-outcomes__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden>
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                  </svg>
+                  <span class="cs-outcomes__text">Reduced manual requests</span>
+                </li>
+              </ul>
+            </div>
+            <div class="cs-header__skills tag-row">
+              <span class="tag">Marketplace</span>
+              <span class="tag">Product Design</span>
+            </div>
+          </div>
+        </div>
+        <p class="dsp-class">.cs-header · .cs-title · .cs-outcomes · .cs-section-heading (below)</p>
+        <h3 class="cs-section-heading" style="margin-top: var(--space-6)">.cs-section-heading</h3>
+        <p class="cs-body text-body" style="margin-top: var(--space-4)">.cs-body — case study long-form paragraph style.</p>
+      </section>
+
+      <!-- Steps -->
+      <section class="dsp-section" id="steps">
+        <h2 class="dsp-section__title">Process steps</h2>
+        <div class="steps-grid steps-grid--responsive dsp-demo-container">
+          <div class="step-card-wrap">
+            <div class="step-card__badge-wrap">
+              <div class="step-card__badge">
+                <span class="step-card__number">1</span>
+              </div>
+            </div>
+            <div class="step-card">
+              <h4 class="step-card__title">Discovery</h4>
+              <ul class="step-card__list">
+                <li>Workshops</li>
+                <li>Metrics</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step-card-wrap">
+            <div class="step-card__badge-wrap">
+              <div class="step-card__badge">
+                <span class="step-card__number">2</span>
+              </div>
+            </div>
+            <div class="step-card">
+              <h4 class="step-card__title">Design</h4>
+              <ul class="step-card__list">
+                <li>Principles</li>
+                <li>Prototypes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step-card-wrap">
+            <div class="step-card__badge-wrap">
+              <div class="step-card__badge">
+                <span class="step-card__number">3</span>
+              </div>
+            </div>
+            <div class="step-card">
+              <h4 class="step-card__title">Delivery</h4>
+              <ul class="step-card__list">
+                <li>Rollout</li>
+                <li>Measure</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="dsp-section" id="about">
+        <h2 class="dsp-section__title">About page</h2>
+        <div class="about-row dsp-demo-container">
+          <div class="about-row__media">
+            <div class="about-photo dsp-placeholder" aria-hidden>Photo</div>
+          </div>
+          <div class="about-row__content">
+            <h2 class="about-title">.about-title</h2>
+            <p class="about-body">.about-body — warm white copy at 18px / 1.6.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer dsp-demo-container" style="margin-top: var(--space-12)">
+        <span class="text-muted">Preview lives in <strong>preview/</strong> on the design-system repo.</span>
+        <span class="text-muted">Run: <code>npm run preview</code></span>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("theme-toggle").addEventListener("click", function () {
+        var root = document.documentElement;
+        var isLight = root.getAttribute("data-theme") === "light";
+        if (isLight) {
+          root.removeAttribute("data-theme");
+          try {
+            localStorage.setItem("theme", "dark");
+          } catch (e) {}
+        } else {
+          root.setAttribute("data-theme", "light");
+          try {
+            localStorage.setItem("theme", "light");
+          } catch (e) {}
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+/**
+ * Layout-only styles for the design-system catalog page.
+ * Component primitives come from ../src/index.css — use tokens only here.
+ */
+
+.dsp-body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+}
+
+.dsp-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6) var(--space-20);
+}
+
+.dsp-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.dsp-top__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.dsp-version {
+  font-size: var(--text-tag);
+  color: var(--color-text-muted);
+}
+
+.dsp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.dsp-section {
+  margin-bottom: var(--space-16);
+}
+
+.dsp-section__title {
+  font-size: var(--text-heading-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-accent);
+  margin: 0 0 var(--space-2);
+}
+
+.dsp-section__desc {
+  font-size: var(--text-body);
+  color: var(--color-text-body);
+  margin: 0 0 var(--space-6);
+  max-width: 52ch;
+  line-height: var(--leading-normal);
+}
+
+.dsp-panel {
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-secondary);
+}
+
+.dsp-panel--overlay {
+  background-color: var(--color-bg-overlay);
+}
+
+.dsp-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.dsp-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.dsp-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.dsp-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.dsp-swatch__chip {
+  height: 56px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dsp-swatch__label {
+  font-size: var(--text-tag);
+  color: var(--color-text-muted);
+  font-family: monospace;
+}
+
+.dsp-demo-container {
+  max-width: var(--about-content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.dsp-nav-demo {
+  position: relative;
+  padding: var(--space-8) 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-bg-primary), var(--color-bg-secondary));
+}
+
+.dsp-nav-demo .nav-header {
+  position: relative;
+}
+
+.dsp-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-image-bg);
+  color: var(--color-teal-dark);
+  font-size: var(--text-body);
+}
+
+.dsp-class {
+  font-size: var(--text-tag);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+[data-theme="light"] .dsp-top {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .dsp-swatch__chip {
+  border-color: rgba(0, 0, 0, 0.08);
+}
