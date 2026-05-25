@@ -414,6 +414,20 @@ body {
    8. NAVIGATION BAR
    ============================================================ */
 
+/* Sticky site header — must not clip dropdowns (no overflow on this wrapper) */
+.nav-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  padding-top: var(--space-6);
+  overflow: visible;
+}
+
+.nav-header__container {
+  overflow: visible;
+  min-width: 0;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -430,6 +444,7 @@ body {
   padding: 0 32px;
   position: relative;
   z-index: 10;
+  overflow: visible;
 }
 
 .nav > * {
@@ -456,6 +471,7 @@ body {
   align-items: center;
   gap: var(--space-1);
   list-style: none;
+  overflow: visible;
 }
 
 .nav__link {
@@ -503,15 +519,28 @@ body {
   position: absolute;
   top: calc(100% + var(--space-2));
   left: 0;
-  z-index: 60;
+  z-index: 300;
   min-width: 300px;
   padding: var(--space-2);
   border-radius: var(--radius-md);
   background-color: var(--color-bg-secondary);
-  box-shadow: var(--shadow-card);
+  border: 1px solid var(--nav-border);
+  box-shadow: var(--shadow-card), 0 12px 28px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+}
+
+/* Rendered via portal (fixed position set inline) */
+.nav__flyout--portal {
+  z-index: 500;
+}
+
+@media (max-width: 900px) {
+  .nav-header__container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .nav__flyout-link {
