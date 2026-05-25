@@ -923,42 +923,38 @@ body {
   max-width: 666px;
 }
 
-/* Outcome stat list with coral icons (case study header + work cards) */
+/* Outcome list — icon + label on one row (Framer “bullet” pattern) */
 .cs-outcomes {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-1);
   font-family: var(--font-family);
 }
 
 .cs-outcomes__item {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-2);
+  min-height: 36px;
 }
 
+/* Icon is the <img> itself (fixed 32×36; overrides Tailwind img { max-width: 100% }) */
 .cs-outcomes__icon {
-  flex-shrink: 0;
+  flex: 0 0 auto;
   display: block;
   width: 32px;
   height: 36px;
-  line-height: 0;
-}
-
-.cs-outcomes__icon-img {
-  display: block;
-  width: 32px;
-  height: auto;
-  max-width: none;
+  max-width: 32px;
+  max-height: 36px;
   object-fit: contain;
 }
 
 .cs-outcomes__text {
-  flex: 1 1 0;
+  flex: 1 1 auto;
   min-width: 0;
   font-size: var(--text-body-lg);      /* 18px */
   font-weight: var(--font-weight-semibold);
@@ -972,7 +968,25 @@ body {
   font-weight: var(--font-weight-semibold);
 }
 
-/* Work card — slightly tighter spacing */
+/* Homepage work cards */
+.card-work .cs-outcomes {
+  width: 100%;
+  max-width: none;
+  gap: 6px;
+}
+
+.cs-outcomes--compact .cs-outcomes__item {
+  min-height: 28px;
+  align-items: center;
+}
+
+.cs-outcomes--compact .cs-outcomes__icon {
+  width: 24px;
+  height: 28px;
+  max-width: 24px;
+  max-height: 28px;
+}
+
 .cs-outcomes--compact .cs-outcomes__text {
   font-size: var(--text-body);
   font-weight: var(--font-weight-regular);
@@ -1101,6 +1115,7 @@ body {
   flex: 0 0 280px;
   width: 280px;
   max-width: 40%;
+  align-self: flex-start;
 }
 
 .cs-header__skills {
