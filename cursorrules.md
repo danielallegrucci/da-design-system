@@ -26,6 +26,7 @@ Copy into consuming projects (e.g. `.cursorrules` or `.cursor/rules/design-syste
 - Cards: `.card`, `.card-work`, `.card.testimonial`, `.testimonial__row`, `.testimonial__icon`
 - Nav: `.nav`, `.nav__link`, `.nav__tab`, `.nav__tab--active`
 - Layout: `.container`, `.section`, `.tag-row`
+- About: `.about-page`, `.about-row`, `.about-title`, `.about-body`, `.about-photo`, `.about-contact`, `.about-link`
 - Case study: `.cs-title`, `.cs-pull-quote`, `.cs-body`, `.cs-section-heading`, `.hero-band`, `.cs-header`
 - Experience: `.role-header`, `.role-body`, `.testimonials`
 

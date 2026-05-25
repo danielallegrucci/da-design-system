@@ -72,9 +72,17 @@
   --text-intro:             40px;      /* Case study section intro heading */
   --text-pull-quote:        28px;      /* Large italic pull quote */
   --text-body-lg:           18px;      /* Case study body copy (slightly larger) */
+  --text-about-title:       54px;      /* About page section titles (Framer) */
   --text-step-number:       32px;      /* Numbered step circle */
 
+  /* About page layout */
+  --about-content-max:      1000px;
+  --about-photo-size:       353px;
+
   /* Additional line heights */
+  --leading-about-title:    1.1em;
+  --leading-about-body:     1.6em;
+  --leading-about-contact:  1.2em;
   --leading-page-title:     70px;
   --leading-intro:          52px;
   --leading-pull-quote:     36px;
@@ -105,6 +113,7 @@
   /* --- Border Radius --- */
   --radius-sm:   4px;
   --radius-md:   8px;
+  --radius-lg:   16px;   /* About page photos (Framer) */
   --radius-pill: 30px;
 
   /* --- Shadows --- */
@@ -618,20 +627,34 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-6) var(--space-6);
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.footer__logo-link {
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
 }
 
 .footer__logo {
-  height: 48px;
+  display: block;
+  height: var(--space-8);
   width: auto;
+  max-width: none;
+  object-fit: contain;
 }
 
 .footer__contact {
-  font-size: var(--text-nav);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+  text-align: right;
+  font-family: var(--font-family);
+  font-size: calc(var(--text-body) - 2px);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-muted);
-  text-align: right;
-  white-space: pre-wrap;
 }
 
 
@@ -880,6 +903,167 @@ body {
   color: var(--color-text-primary);    /* #F6F3EC */
   text-align: center;
   font-family: var(--font-family);
+}
+
+
+/* ============================================================
+   19b. ABOUT PAGE (da-id.com/about — Framer layout)
+   ============================================================ */
+
+/*
+  Page shell: 80px vertical padding, 80px gap between blocks,
+  content rows centered at 1000px inside .container.
+*/
+.about-page {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+  font-family: var(--font-family);
+}
+
+.about-page__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-20);
+  width: 100%;
+}
+
+/* Image + copy row (353px photo, 40px gap, 1000px row) */
+.about-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--space-10);
+  width: 100%;
+  max-width: var(--about-content-max);
+  min-height: var(--about-photo-size);
+}
+
+.about-row__media {
+  flex: none;
+  width: var(--about-photo-size);
+  max-width: 100%;
+  line-height: 0;
+}
+
+.about-row__content {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-6);
+  height: 100%;
+}
+
+.about-row__content--loose {
+  gap: var(--space-10);
+}
+
+.about-row--centered {
+  align-items: center;
+}
+
+.about-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+}
+
+/* 54px bold titles — “Nice to meet you!”, “Listen, Then Play” */
+.about-title {
+  font-size: var(--text-about-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-about-title);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  margin: 0;
+}
+
+/* 18px body — warm white, 1.6 line height */
+.about-body {
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-about-body);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  margin: 0;
+}
+
+.about-body strong {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Contact strip — logo left, teal email + link right */
+.about-contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: var(--about-content-max);
+  padding: var(--space-10) 0;
+}
+
+.about-contact__logo-link {
+  flex-shrink: 0;
+  display: block;
+  line-height: 0;
+}
+
+.about-contact__logo {
+  display: block;
+  height: var(--space-12);
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+.about-contact__links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.about-contact__email,
+.about-link {
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-about-contact);
+  color: var(--color-text-accent);
+  text-decoration: none;
+  font-family: var(--font-family);
+}
+
+.about-link:hover {
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 809px) {
+  .about-row {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .about-row__media {
+    width: 100%;
+    max-width: var(--about-photo-size);
+  }
+
+  .about-title {
+    font-size: var(--text-section-label);
+    line-height: var(--leading-tight);
+  }
 }
 
 
