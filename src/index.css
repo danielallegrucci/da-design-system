@@ -923,16 +923,47 @@ body {
   max-width: 666px;
 }
 
-/* Outcome stat list beside pull quote */
+/* Outcome stat list with coral icons (case study header + work cards) */
 .cs-outcomes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
+  font-family: var(--font-family);
+}
+
+.cs-outcomes__item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.cs-outcomes__icon {
+  flex-shrink: 0;
+  display: block;
+  width: 32px;
+  height: 36px;
+  line-height: 0;
+}
+
+.cs-outcomes__icon-img {
+  display: block;
+  width: 32px;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+.cs-outcomes__text {
+  flex: 1 1 0;
+  min-width: 0;
   font-size: var(--text-body-lg);      /* 18px */
   font-weight: var(--font-weight-semibold);
-  line-height: var(--leading-body-lg); /* 32px */
+  line-height: 1.7;
   color: var(--color-text-body);
-  font-family: var(--font-family);
 }
 
 /* Metric number highlight within outcome list */
@@ -941,12 +972,11 @@ body {
   font-weight: var(--font-weight-semibold);
 }
 
-/* Outcome icon row (arrow up/down, star) */
-.cs-outcomes__icons {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-right: var(--space-2);
+/* Work card — slightly tighter spacing */
+.cs-outcomes--compact .cs-outcomes__text {
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-normal);
 }
 
 
@@ -1051,10 +1081,26 @@ body {
 /* Pull quote left, outcomes right (Framer header row) */
 .cs-header__summary-row {
   margin-top: var(--space-6);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(200px, 280px);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: var(--space-10);
-  align-items: start;
+  width: 100%;
+  max-width: var(--about-content-max);
+}
+
+.cs-header__summary-row .cs-pull-quote {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 666px;
+  margin: 0;
+}
+
+.cs-header__summary-row .cs-outcomes {
+  flex: 0 0 280px;
+  width: 280px;
+  max-width: 40%;
 }
 
 .cs-header__skills {
@@ -1197,8 +1243,14 @@ body {
 
 @media (max-width: 1024px) {
   .cs-header__summary-row {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: var(--space-6);
+  }
+
+  .cs-header__summary-row .cs-outcomes {
+    flex: none;
+    width: 100%;
+    max-width: none;
   }
 
   .steps-grid,
