@@ -595,7 +595,7 @@ body {
   gap: var(--space-5);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .section-stripe__item {
     grid-column: span 12;
   }
@@ -700,8 +700,8 @@ body {
 .col-start-11 { grid-column-start: 11; }
 .col-start-12 { grid-column-start: 12; }
 
-/* Tablet/mobile — stack multi-column spans to full width */
-@media (max-width: 1024px) {
+/* Stack multi-column spans on phone only (tablet keeps horizontal layouts) */
+@media (max-width: 768px) {
   .col-span-1,
   .col-span-2,
   .col-span-3,
@@ -780,25 +780,38 @@ body {
    ============================================================ */
 
 .hero__layout {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gap);
+  row-gap: var(--grid-gap);
+  align-items: start;
+  width: 100%;
   isolation: isolate;
 }
 
 .hero__copy {
+  grid-column: span 7;
   position: relative;
   z-index: 1;
   min-width: 0;
 }
 
 .hero__headshot-wrap {
+  grid-column: span 5;
   position: relative;
   z-index: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-@media (min-width: 1025px) {
+@media (max-width: 768px) {
+  .hero__copy,
   .hero__headshot-wrap {
-    justify-content: flex-end;
+    grid-column: span 12;
+  }
+
+  .hero__headshot-wrap {
+    justify-content: center;
   }
 }
 
