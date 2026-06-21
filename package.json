@@ -1,6 +1,6 @@
 {
   "name": "@da-id/design-system",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "DA Portfolio design system — CSS tokens, typography, and component primitives (Poppins, dark/light via data-theme)",
   "license": "MIT",
   "repository": {
