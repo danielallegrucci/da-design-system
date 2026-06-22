@@ -135,6 +135,11 @@
   /* --- Work history employer logo (default row height) --- */
   --role-header-logo-height: 36px;
 
+  /* Work history — shared split: media column + content column (aligns role-body with card-work) */
+  --work-history-media-width: 500px;
+  --work-history-split-gap:    40px;
+  --work-history-card-image-height: 387px;
+
   /* --- 12-column layout grid --- */
   --grid-columns:           12;
   --grid-gap:               var(--space-8);
@@ -327,18 +332,19 @@ body {
   gap: var(--space-2);
 }
 
-/* Case Study / Work card — image + content side-by-side */
+/* Case Study / Work card — image + content side-by-side (matches .role-body split) */
 .card-work {
   display: grid;
-  grid-template-columns: 500px 1fr;
-  gap: 40px;
+  grid-template-columns: var(--work-history-media-width) minmax(0, 1fr);
+  gap: var(--work-history-split-gap);
   align-items: start;
 }
 
 /* Work card image panel */
 .card-work__image {
-  width: 500px;
-  height: 387px;
+  width: 100%;
+  max-width: var(--work-history-media-width);
+  height: var(--work-history-card-image-height);
   background-color: var(--color-image-bg);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -369,8 +375,13 @@ body {
     gap: var(--space-6);
   }
   .card-work__image {
-    width: 100%;
+    max-width: none;
     height: 260px;
+  }
+
+  .role-body {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
   }
 }
 
@@ -986,25 +997,24 @@ body {
   font-weight: var(--font-weight-regular);
 }
 
-/* Role description — 6 + 6 on 12-column grid */
+/* Role description — left column aligns with .card-work__image; list with .card-work__content */
 .role-body {
   display: grid;
-  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
-  column-gap: var(--grid-gap);
-  row-gap: var(--grid-gap);
+  grid-template-columns: var(--work-history-media-width) minmax(0, 1fr);
+  gap: var(--work-history-split-gap);
   align-items: start;
   margin-bottom: calc(var(--space-4) + var(--space-6) + var(--space-6));
 }
 
 .role-body__description {
-  grid-column: span 6;
+  min-width: 0;
   font-size: var(--text-body);
   color: var(--color-text-body);
   line-height: var(--leading-normal);
 }
 
 .role-body__list {
-  grid-column: span 6;
+  min-width: 0;
   list-style: disc;
   padding-left: var(--space-5);
   font-size: var(--text-body);
